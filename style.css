@@ -1,12 +1,29 @@
 body{
 font-family: 'Roboto', sans-serif;
+    
 }
+
+html, body{
+    height: 100%;
+}
+
+.wrapper{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+
+    flex: 1 1 auto;
+}
+
 .header{
     background: rgba(255, 113, 67, 0.27);
     padding: 38px 0 47px;
 }
 
-.header_flex, .footer_flex, .about, .subscribe, .plan_flex{
+.header_flex, .footer_flex, .about{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -271,10 +288,6 @@ letter-spacing: -0.531474px;
 color: #696871;
 }
 
-.item_title span{
-    font-size: 28px;
-}
-
 .button_item{
 width: 285px;
 background: white;
@@ -287,6 +300,64 @@ margin-top: 36px;
     color: #FFFFFF;
     transition: 500ms;
 }
+
+
+
+
+
+.info{
+    padding-left: 49px;
+}
+
+.choicebtn{
+    padding: 1px;
+    padding-left: 30%;
+}
+
+.button_choice{
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+    background: none;
+    color: rgb(246,35,13);
+    border: 1px solid rgb(246,35,13);
+    margin-left: 35px;
+    margin-top: 15px;
+}
+
+
+.button_choice:hover{
+    background: rgb(216, 216, 255);
+    transition: 500ms;
+}
+
+.resultr{
+    font-size: 50px;
+}
+
+
+.donate{
+    max-width: 300px;
+    padding-top: 50px;
+}
+
+.fotex{
+color: rgb(69,69,69);
+    text-decoration-line: none;
+    font-size: 15px;
+
+}
+
+.inforol{
+    font-size: 30px;
+    color: rgb(69,69,69);
+    text-decoration-line: none;
+    padding-left: 10%;
+    
+    
+}
+
+
 
 
 
@@ -336,10 +407,6 @@ margin-top: 36px;
         width: 100%;
     }
 
-    .subscribe{
-        flex-direction: column-reverse;
-    }
-
     .input{
         width: 100%;
         margin-bottom: 30px;
@@ -348,18 +415,6 @@ margin-top: 36px;
     .img_container{
         margin-top: 30px;
         width: 47%;
-    }
-
-    .plan_title{
-        text-align: center;
-    }
-
-    .plan_flex{
-        flex-direction: column;
-    }
-
-    .item:not(:last-of-type){
-        margin-bottom: 30px;
     }
 
     .item .button{
@@ -371,46 +426,3 @@ margin-top: 36px;
     }
 }
 
-
-.info{
-    padding-left: 49px;
-}
-
-.choicebtn{
-    padding: 1px;
-    padding-left: 30%;
-}
-
-.button_choice{
-    cursor: pointer;
-    width: 300px;
-    height: 60px;
-    background: none;
-    color: rgb(246,35,13);
-    border: 1px solid rgb(246,35,13);
-    margin-left: 35px;
-    margin-top: 15px;
-}
-
-
-.button_choice:hover{
-    background: rgb(216, 216, 255);
-    transition: 500ms;
-}
-
-.resultr{
-    font-size: 50px;
-}
-
-
-.donate{
-    max-width: 300px;
-    padding-top: 50px;
-}
-
-.fotex{
-color: rgb(69,69,69);
-    text-decoration-line: none;
-    font-size: 15px;
-
-}
