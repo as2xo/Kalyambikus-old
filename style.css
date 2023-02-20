@@ -5,6 +5,7 @@ font-family: 'Roboto', sans-serif;
 
 html, body{
     height: 100%;
+    user-select: none;
 }
 
 .wrapper{
@@ -302,7 +303,54 @@ margin-top: 36px;
 }
 
 
+.blockbut3{
+    max-width: 1000px;
+    padding: 5px;
+    margin: auto;
+    
+}
 
+.bbrouletteother{
+        margin-top: 10px;
+    margin-left: 9px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+    color: rgb(131,174,255);
+    background: none;
+    border: 1px solid rgb(177,231,255);
+    border-radius: 10px;
+}
+
+.bbrouletteother:hover{
+    background: rgb(177,231,255, 0.32);
+    transition: 500ms;
+}
+
+
+.bbroulettepopular{
+    margin-top: 10px;
+    margin-left: 9px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+    color: rgb(246,35,13);
+    background: none;
+    border: 1px solid rgb(246,35,13);
+    border-radius: 10px;
+}
+
+
+.bbroulettepopular:hover{
+    background: rgba(255,130,112,0.32);
+    transition: 500ms;
+}
 
 
 .info{
@@ -310,8 +358,13 @@ margin-top: 36px;
 }
 
 .choicebtn{
-    padding: 1px;
-    padding-left: 30%;
+    padding: 5px;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .button_choice{
@@ -323,6 +376,7 @@ margin-top: 36px;
     border: 1px solid rgb(246,35,13);
     margin-left: 35px;
     margin-top: 15px;
+
 }
 
 
@@ -330,6 +384,179 @@ margin-top: 36px;
     background: rgb(216, 216, 255);
     transition: 500ms;
 }
+
+
+.btnnew{
+    
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: 300px;
+    font-weight: 600;
+    padding: 1% 4% 1%;
+    font-size: 15px;
+    cursor: pointer;
+    height: 23px;
+    width: 300px;
+    border: 1px solid rgb(219,64,91);  
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+
+.top-button{
+    border: 1px solid rgb(219,64,91);
+    background-color: rgb(219,64,91,0.2);
+    color: rgb(219,64,91);
+}
+
+
+
+.top-button:hover{
+    background-color: rgb(219,64,91);
+    color: #FFFFFF;
+    transition: 500ms;
+}
+
+
+
+.other-button{
+    border: 1px solid rgb(4,126,208);
+    background-color: rgb(4,126,208,0.2);
+    color: rgb(4,126,208);
+}
+
+.other-button:hover{
+    background-color: rgb(4,126,208);
+    color: #FFFFFF;
+    transition: 500ms;
+}
+
+
+
+ 
+
+.donateees{
+    border: 1px solid rgb(254,149,0);
+    background-color: rgb(254,149,0,0.2);
+    color: rgb(253, 126, 1);
+}
+
+
+.donateees:hover{
+    background-color: rgb(214, 91, 18);
+    color: #FFFFFF;
+    transition: 500ms;
+}
+
+
+
+
+.donats{
+
+    text-align: center;
+    padding: 45px
+}
+
+
+details {
+    border: 1px solid rgb(4,126,208);
+    border-radius: 4px;
+    padding: 0.5em 0.5em 0;
+    background-color: rgb(4,126,208,0.3);
+}
+
+summary {
+    font-weight: bold;
+    margin: -0.5em -0.5em 0;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+details[open] {
+    padding: 0.5em;
+    background-color: rgb(4,126,208,0.1);
+}
+
+
+
+.contsctslink{
+
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: 300px;
+    font-weight: 600;
+    padding: 1% 4% 1%;
+    font-size: 15px;
+    cursor: pointer;
+    height: 23px;
+    width: 300px;
+    border: 1px solid rgb(219,64,91);  
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+
+
+
+.contsctslink{
+    border: 1px solid rgb(4,126,208);
+    background-color: rgb(4,126,208,0.2);
+    color: rgb(4,126,208);
+}
+
+.contsctslink:hover{
+    background-color: rgb(4,126,208);
+    color: #FFFFFF;
+    transition: 500ms;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .resultr{
     font-size: 50px;
