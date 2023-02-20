@@ -4,7 +4,7 @@ var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
 var spinTimeout = null;
 
-var spinArcStart = 10;
+var spinArcStart = 5;
 var spinTime = 0;
 var spinTimeTotal = 0;
 
@@ -107,7 +107,7 @@ function rotateWheel() {
   var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
   startAngle += (spinAngle * Math.PI / 180);
   drawRouletteWheel();
-  spinTimeout = setTimeout('rotateWheel()', 0.001);
+  spinTimeout = setTimeout('rotateWheel()', 0.01);
 }
 
 function stopRotateWheel() {
@@ -118,7 +118,7 @@ function stopRotateWheel() {
   ctx.save();
   ctx.font = 'white bold 30px Helvetica, Arial';
   var text = options[index]
-  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+  ctx.fillText(text, 2 - ctx.measureText(text).width / 2, 250 + 10);
   ctx.restore();
   document.getElementById('spin').style.visibility = 'visible';
   document.getElementById("coin").innerHTML = text;
