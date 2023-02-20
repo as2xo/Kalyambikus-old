@@ -4,7 +4,6 @@ var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
 var spinTimeout = null;
 
-
 var spinArcStart = 10;
 var spinTime = 0;
 var spinTimeTotal = 0;
@@ -93,9 +92,9 @@ function drawRouletteWheel() {
 
 function spin() {
   document.getElementById('spin').style.visibility = 'hidden';
-  spinAngleStart = Math.random() * 2 + 2;
+  spinAngleStart = Math.random() * 2 + 5;
   spinTime = 0;
-  spinTimeTotal = Math.random() * 2 + 2 * 1000;
+  spinTimeTotal = Math.random() * 2 + 5 * 1000;
   rotateWheel();
 }
 
@@ -105,10 +104,10 @@ function rotateWheel() {
     stopRotateWheel();
     return;
   }
-    var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+  var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
   startAngle += (spinAngle * Math.PI / 180);
   drawRouletteWheel();
-  spinTimeout = setTimeout('rotateWheel()', 0.02);
+  spinTimeout = setTimeout('rotateWheel()', 0.001);
 }
 
 function stopRotateWheel() {
