@@ -93,9 +93,9 @@ function drawRouletteWheel() {
 
 function spin() {
   document.getElementById('spin').style.visibility = 'hidden';
-  spinAngleStart = Math.random() * 2 + 5;
+  spinAngleStart = Math.random() * 2 + 2;
   spinTime = 0;
-  spinTimeTotal = Math.random() * 2 + 5 * 1000;
+  spinTimeTotal = Math.random() * 2 + 2 * 1000;
   rotateWheel();
 }
 
