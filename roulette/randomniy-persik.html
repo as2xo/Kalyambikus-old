@@ -4,67 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
    <title>Калямбикус — Рандомный персик</title>
     <link rel="icon" type="image/x-icon" href="/Kalyambikus/img/roulette-hp.ico">
-      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="/Kalyambikus/style.css" rel="stylesheet" type="text/css">
-    
-    
-    
-    
-    <style>
-        .rolliii {
-  width: 100%;
-  text-align: center;
-}
-
-#wheelOfFortune {
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-
-#wheel {
-  display: block;
-}
-
-#spin {
-  font: 13px; sans-serif;
-  user-select: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30%;
-  height: 30%;
-  margin: -15%;
-  background: #fff;
-  color: #fff;
-  box-shadow: 0 0 0 8px currentColor, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
-  border: solid 1px #eee;
-  border-radius: 50%;
-  transition: 0.8s;
-}
-
-#spin::after {
-  content: "";
-  position: absolute;
-  top: -17px;
-  border: 10px solid transparent;
-  border-bottom-color: currentColor;
-  border-top: none;
-}
-        
-    </style>    
-    
-    
 </head>
 <body>
     <div class="wrapper">
@@ -94,22 +39,13 @@
    </header>
     <main class="main">
     <h1 class="container about">Рулетка: Рандомный Персик</h1>
-        
-        
-          
-        
-        
-        
     <section class="container about">
     
-<!-- partial:index.partial.html -->
-<div class="rolliii">
-  <div id="wheelOfFortune">
-  <canvas id="wheel" width="500" height="500"></canvas>
-  <div id="spin"></div>
-  </div>
-  </div>
+        <input class="button_transparent" type="button" value="ВРАЩАТЬ" style="float:left;" id='spin' />
+<canvas id="canvas" width="500" height="500"></canvas>
+<p class="resultr" name="" id="coin" ></p>
 <!-- partial -->
+<script src="/Kalyambikus/script/randomniy-persic.js"></script>
     
     </section>
     
@@ -200,6 +136,5 @@
     </div>
    </footer>
     </div>
-    <script  src="/Kalyambikus/script.js"></script>
     </body>
 </html>
