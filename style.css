@@ -71,7 +71,6 @@ html, body{
 #wheelOfFortune {
   display: inline-block;
   position: relative;
-  overflow: hidden;
   text-align: center;
 }
 
@@ -80,7 +79,7 @@ html, body{
 }
 
 #spin {
-  font: 1.5em/0 sans-serif;
+  font: 13px roboto;
   user-select: none;
   cursor: pointer;
   display: flex;
