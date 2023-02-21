@@ -4,7 +4,7 @@ var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
 var spinTimeout = null;
 
-var spinArcStart = 5;
+var spinArcStart = 10;
 var spinTime = 0;
 var spinTimeTotal = 0;
 
@@ -38,17 +38,17 @@ function drawRouletteWheel() {
   
   var canvas = document.getElementById("canvas");
   if (canvas.getContext) {
-    var outsideRadius = 200;
+    var outsideRadius = 240;
     var textRadius = 160;
     var insideRadius = 125;
 
     ctx = canvas.getContext("2d");
     ctx.clearRect(0,0,500,500);
 
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = "rgb(252,96,55)";
+    ctx.lineWidth = 1;
 
-    ctx.font = 'bold 12px Helvetica, Arial';
+    ctx.font = 'bold 13px Helvetica, Arial';
 
     for(var i = 0; i < options.length; i++) {
       var angle = startAngle + i * arc;
@@ -71,18 +71,18 @@ function drawRouletteWheel() {
                     250 + Math.sin(angle + arc / 2) * textRadius);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
       var text = options[i];
-      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+      ctx.fillText(text, -ctx.measureText(text).width / 2, 5);
       ctx.restore();
     } 
 
     //Arrow
     ctx.fillStyle = "black";
     ctx.beginPath();
-    ctx.moveTo(250 - 4, 250 - (outsideRadius + 5));
-    ctx.lineTo(250 + 4, 250 - (outsideRadius + 5));
+    ctx.moveTo(250 - 4, 250 - (outsideRadius + 25));
+    ctx.lineTo(250 + 4, 250 - (outsideRadius + 25));
     ctx.lineTo(250 + 4, 250 - (outsideRadius - 5));
     ctx.lineTo(250 + 9, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 + 0, 250 - (outsideRadius - 13));
+    ctx.lineTo(250 + 0, 250 - (outsideRadius - 33));
     ctx.lineTo(250 - 9, 250 - (outsideRadius - 5));
     ctx.lineTo(250 - 4, 250 - (outsideRadius - 5));
     ctx.lineTo(250 - 4, 250 - (outsideRadius + 5));
@@ -91,7 +91,6 @@ function drawRouletteWheel() {
 }
 
 function spin() {
-  document.getElementById('spin').style.visibility = 'hidden';
   spinAngleStart = Math.random() * 2 + 5;
   spinTime = 0;
   spinTimeTotal = Math.random() * 2 + 5 * 1000;
@@ -118,9 +117,8 @@ function stopRotateWheel() {
   ctx.save();
   ctx.font = 'white bold 30px Helvetica, Arial';
   var text = options[index]
-  ctx.fillText(text, 2 - ctx.measureText(text).width / 2, 250 + 10);
+  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
   ctx.restore();
-  document.getElementById('spin').style.visibility = 'visible';
   document.getElementById("coin").innerHTML = text;
 }
 
