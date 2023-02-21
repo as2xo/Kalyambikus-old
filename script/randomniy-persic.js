@@ -1,131 +1,75 @@
-var options = ["240 КК", "50 КК", "60 КК", "80 КК", "10 КК", "120 КК", "140 КК", "160 КК", "70 КК", "90 КК", "50 КК", "60 КК", "180 КК", "200 КК", "250 КК", "170 КК", "60 КК", "70 КК", "1500 КК", "90 КК", "100 КК", "120 КК", "150 КК", "300 КК", "110 КК"];
+let sectors = [
+  {color:"#D9487D", label:"Привет"},
+  {color:"#F291B5", label:"Я на стриме"},
+  {color:"#A63889", label:"Рулетка работает"},
+  {color:"#490F59", label:"Значит"},
+  {color:"#F29F8D", label:"Всё"},
+    {color:"#490F59", label:"Хорошо"},
+];
 
-var startAngle = 0;
-var arc = Math.PI / (options.length / 2);
-var spinTimeout = null;
+const rand = (m, M) => Math.random() * (M - m) + m;
+let tot = sectors.length;
+const EL_spin = document.querySelector("#spin");
+const ctx = document.querySelector("#wheel").getContext('2d');
+const dia = ctx.canvas.width;
+const rad = dia / 2;
+const PI = Math.PI;
+const TAU = 2 * PI;
+let arc = TAU / sectors.length;
 
-var spinArcStart = 10;
-var spinTime = 0;
-var spinTimeTotal = 0;
+const friction = 0.991; // 0.995=soft, 0.99=mid, 0.98=hard
+let angVel = 0; // Angular velocity
+let ang = 0; // Angle in radians
 
-var ctx;
+const getIndex = () => Math.floor(tot - ang / TAU * tot) % tot;
 
-document.getElementById("spin").addEventListener("click", spin);
-
-function byte2Hex(n) {
-  var nybHexString = "0123456789ABCDEF";
-  return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
-}
-
-function RGB2Color(r,g,b) {
-	return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
-}
-
-function getColor(item, maxitem) {
-  var phase = 0;
-  var center = 128;
-  var width = 127;
-  var frequency = Math.PI*2/maxitem;
-  
-  red   = Math.sin(frequency*item+2+phase) * width + center;
-  green = Math.sin(frequency*item+0+phase) * width + center;
-  blue  = Math.sin(frequency*item+4+phase) * width + center;
-  
-  return RGB2Color(red,green,blue);
-}
-
-function drawRouletteWheel() {
-  
-  var canvas = document.getElementById("canvas");
-  if (canvas.getContext) {
-    var outsideRadius = 240;
-    var textRadius = 160;
-    var insideRadius = 125;
-
-    ctx = canvas.getContext("2d");
-    ctx.clearRect(0,0,500,500);
-
-    ctx.strokeStyle = "rgb(252,96,55)";
-    ctx.lineWidth = 1;
-
-    ctx.font = 'bold 13px Helvetica, Arial';
-
-    for(var i = 0; i < options.length; i++) {
-      var angle = startAngle + i * arc;
-      //ctx.fillStyle = colors[i];
-      ctx.fillStyle = getColor(i, options.length);
-
-      ctx.beginPath();
-      ctx.arc(250, 250, outsideRadius, angle, angle + arc, false);
-      ctx.arc(250, 250, insideRadius, angle + arc, angle, true);
-      ctx.stroke();
-      ctx.fill();
-
-      ctx.save();
-      ctx.shadowOffsetX = -1;
-      ctx.shadowOffsetY = -1;
-      ctx.shadowBlur    = 0;
-      ctx.shadowColor   = "rgb(220,220,220)";
-      ctx.fillStyle = "black";
-      ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius, 
-                    250 + Math.sin(angle + arc / 2) * textRadius);
-      ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      var text = options[i];
-      ctx.fillText(text, -ctx.measureText(text).width / 2, 5);
-      ctx.restore();
-    } 
-
-    //Arrow
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(250 - 4, 250 - (outsideRadius + 25));
-    ctx.lineTo(250 + 4, 250 - (outsideRadius + 25));
-    ctx.lineTo(250 + 4, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 + 9, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 + 0, 250 - (outsideRadius - 33));
-    ctx.lineTo(250 - 9, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 - 4, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 - 4, 250 - (outsideRadius + 5));
-    ctx.fill();
-  }
-}
-
-function spin() {
-  spinAngleStart = Math.random() * 2 + 5;
-  spinTime = 0;
-  spinTimeTotal = Math.random() * 2 + 5 * 1000;
-  rotateWheel();
-}
-
-function rotateWheel() {
-  spinTime += 10;
-  if(spinTime >= spinTimeTotal) {
-    stopRotateWheel();
-    return;
-  }
-  var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-  startAngle += (spinAngle * Math.PI / 180);
-  drawRouletteWheel();
-  spinTimeout = setTimeout('rotateWheel()', 0.01);
-}
-
-function stopRotateWheel() {
-  clearTimeout(spinTimeout);
-  var degrees = startAngle * 180 / Math.PI + 90;
-  var arcd = arc * 180 / Math.PI;
-  var index = Math.floor((360 - degrees % 360) / arcd);
+function drawSector(sector, i) {
+  const ang = arc * i;
   ctx.save();
-  ctx.font = 'white bold 30px Helvetica, Arial';
-  var text = options[index]
-  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+  // COLOR
+  ctx.beginPath();
+  ctx.fillStyle = sector.color;
+  ctx.moveTo(rad, rad);
+  ctx.arc(rad, rad, rad, ang, ang + arc);
+  ctx.lineTo(rad, rad);
+  ctx.fill();
+  // TEXT
+  ctx.translate(rad, rad);
+  ctx.rotate(ang + arc / 2);
+  ctx.textAlign = "right";
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 30px sans-serif";
+  ctx.fillText(sector.label, rad - 10, 10);
+  //
   ctx.restore();
-  document.getElementById("coin").innerHTML = text;
+};
+
+function rotate() {
+  const sector = sectors[getIndex()];
+  ctx.canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
+  EL_spin.textContent = sector.label;
+  EL_spin.style.background = sector.color;
 }
 
-function easeOut(t, b, c, d) {
-  var ts = (t/=d)*t;
-  var tc = ts*t;
-  return b+c*(tc + -3*ts + 3*t);
+function frame() {
+  if (!angVel) return;
+  angVel *= friction; // Decrement velocity by friction
+  if (angVel < 0.002) angVel = 0; // Bring to stop
+  ang += angVel; // Update angle
+  ang %= TAU; // Normalize angle
+  rotate();
 }
 
-drawRouletteWheel();
+function engine() {
+  frame();
+  requestAnimationFrame(engine)
+}
+
+// INIT
+sectors.forEach(drawSector);
+rotate(); // Initial rotation
+engine(); // Start engine
+EL_spin.addEventListener("click", () => {
+  if (!angVel) angVel = rand(0.25, 0.35);
+});
+
